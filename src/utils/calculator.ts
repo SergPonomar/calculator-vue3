@@ -1,5 +1,5 @@
 function multiDivide(arr: string[]): string[] {
-	for (let i=0; i < arr.length; i++) {
+	for (let i=1; i < arr.length-1; i++) {
 		if (arr[i] === '×' || arr[i] === '/') {
 			const res: number = arr[i] === '×'? 
 				Number(arr[i-1]) * Number(arr[i+1]) : Number(arr[i-1]) / Number(arr[i+1])
@@ -11,7 +11,7 @@ function multiDivide(arr: string[]): string[] {
 }
 
 function sumSubtract(arr: string[]): string[] {
-	for (let i=0; i < arr.length; i++) {
+	for (let i=1; i < arr.length-1; i++) {
 		if (arr[i] === '+' || arr[i] === '-') {
 			const res: number = arr[i] === '+'? 
 				Number(arr[i-1]) + Number(arr[i+1]) : Number(arr[i-1]) - Number(arr[i+1])
