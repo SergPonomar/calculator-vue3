@@ -1,4 +1,4 @@
-import {inputHandler} from '../utils/input-handler'
+import inputHandler from '../utils/input-handler'
 
 describe("digits inputs works right", () => {
 	test("inputHandler('1', '', '0') returns ['', '0']", () => {

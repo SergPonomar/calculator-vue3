@@ -52,4 +52,4 @@ function inputHandler(input: string, display1: string, display2: string): string
 	return [display1, display2]
 }
 
-export {inputHandler}
+export default inputHandler
