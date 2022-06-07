@@ -101,3 +101,30 @@ describe("C input works right", () => {
     expect(inputHandler('C', '10', '0')).toEqual(['', '0'])
   });
 })
+
+describe("√ input works right", () => {
+  test("inputHandler('√', '20×', '0') returns ['20×√', '0']", () => {
+    expect(inputHandler('√', '20×', '0')).toEqual(['20×√', '0'])
+  });
+  test("inputHandler('√', '20×√', '0') returns ['20×√', '0']", () => {
+    expect(inputHandler('√', '20×√', '0')).toEqual(['20×√', '0'])
+  });
+  test("inputHandler('√', '', '0') returns ['√', '0']", () => {
+    expect(inputHandler('√', '', '0')).toEqual(['√', '0'])
+  });
+})
+
+describe("% input works right", () => {
+  test("inputHandler('%', '10', '0') returns ['10%', '0']", () => {
+    expect(inputHandler('%', '10', '0')).toEqual(['10%', '0'])
+  });
+  test("inputHandler('%', '(10)', '0') returns ['(10)%', '0']", () => {
+    expect(inputHandler('%', '(10)', '0')).toEqual(['(10)%', '0'])
+  });
+  test("inputHandler('%', '', '0') returns ['', '0']", () => {
+    expect(inputHandler('%', '', '0')).toEqual(['', '0'])
+  });
+  test("inputHandler('%', '20×', '0') returns ['20×', '0']", () => {
+    expect(inputHandler('%', '20×', '0')).toEqual(['20×', '0'])
+  });
+})

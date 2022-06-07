@@ -6,7 +6,7 @@ import inputHandler from '../utils/input-handler'
 const dispExp = inject(dispExpKey, ref<string>(""))
 const dispRes = inject(dispResKey, ref<string>("0"))
 
-const controls: string[] = ['C','(',')','/',
+const controls: string[] = ['C','√','%','/',
                   '7','8','9','×',
                   '4','5','6','-',
                   '1','2','3','+',

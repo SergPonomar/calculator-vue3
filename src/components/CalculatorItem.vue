@@ -47,8 +47,12 @@ function pressHandler(e: KeyboardEvent): void {
     case '-':
     case '+':
     case '/':
+    case '%':
     case ',':
       key = e.key
+      break
+    case 's':
+      key = '√'
       break
     case 'c':
       key = 'C'

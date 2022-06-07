@@ -1,9 +1,45 @@
 import {calcInside, 
-    calcResult,
-    checkParentheses, 
-    multiDivide, 
-    strToArray, 
-    sumSubtract} from '../utils/calculator'
+  calcResult,
+  checkParentheses,
+  limitLength,
+  multiDivide,
+  percentage,
+  strToArray,
+  sqrt, 
+  sumSubtract} from '../utils/calculator'
+
+describe("sqrt works correctly", () => {
+  test("sqrt(['√', '9']) returns [3]", () => {
+    expect(sqrt(['√', '9'])).toEqual(['3'])
+  });
+  test("sqrt(['√', '-9']) returns [-3]", () => {
+    expect(sqrt(['√', '-9'])).toEqual(['-3'])
+  });
+  test("sqrt(['√', '0']) returns [0]", () => {
+    expect(sqrt(['√', '0'])).toEqual(['0'])
+  });
+})
+
+describe("percentage works correctly", () => {
+  test("percentage(['10', '%', '30']) returns [3]", () => {
+    expect(percentage(['10', '%', '30'])).toEqual(['3'])
+  });
+  test("percentage(['-10', '%', '30']) returns [3]", () => {
+    expect(percentage(['-10', '%', '30'])).toEqual(['-3'])
+  });
+  test("percentage(['10', '%', '-30']) returns [-3]", () => {
+    expect(percentage(['10', '%', '-30'])).toEqual(['-3'])
+  });
+  test("percentage(['-10', '%', '-30']) returns [-3]", () => {
+    expect(percentage(['-10', '%', '-30'])).toEqual(['3'])
+  });
+  test("percentage(['0', '%', '30']) returns [0]", () => {
+    expect(percentage(['0', '%', '30'])).toEqual(['0'])
+  });
+  test("percentage(['5', '%', '0']) returns [0]", () => {
+    expect(percentage(['5', '%', '0'])).toEqual(['0'])
+  });
+})
 
 describe("multiDivide works correctly", () => {
 	test("multiDivide(['20', '×', '10']) returns [200]", () => {
@@ -103,6 +139,25 @@ describe("strToArray works correctly", () => {
       ['20', '+', '-.3', '×', '.4', '/', '75', '-', '31.8900', '+', '1234.45', '/', '-0.3'])
   });
 
+  test("strToArray('√9') returns ['√', '9']", () => {
+    expect(strToArray('√9')).toEqual(['√', '9'])
+  });
+  test("strToArray('√-9') returns ['√', '-9']", () => {
+    expect(strToArray('√-9')).toEqual(['√', '-9'])
+  });
+  test("strToArray('-√9') returns ['-1', '×', '√', '9']", () => {
+    expect(strToArray('-√9')).toEqual(['-1', '×', '√', '9'])
+  });
+
+  test("strToArray('10%30') returns ['10', '%', '30']", () => {
+    expect(strToArray('10%30')).toEqual(['10', '%', '30'])
+  });
+  test("strToArray('10%-30') returns ['10', '%', '-30']", () => {
+    expect(strToArray('10%-30')).toEqual(['10', '%', '-30'])
+  });
+  test("strToArray('-10%30') returns ['-10', '%', '30']", () => {
+    expect(strToArray('-10%30')).toEqual(['-10', '%', '30'])
+  });
 })
 
 describe("calcInside works correctly", () => {
@@ -160,6 +215,9 @@ describe("calcResult works correctly", () => {
   test("calcResult('(10') returns Error", () => {
     expect(calcResult('(10')).toEqual('Error')
   });
+  test("calcResult('-50%(√9)') returns -1,5", () => {
+    expect(calcResult('-50%(√9)')).toEqual('-1,5')
+  });
 })
 
 describe("checkParentheses works correctly", () => {
@@ -168,5 +226,11 @@ describe("checkParentheses works correctly", () => {
   });
   test("checkParentheses('(10')) returns false", () => {
     expect(checkParentheses('(10')).toEqual(false)
+  });
+})
+
+describe("limitLength works correctly", () => {
+  test("limitLength('0.30000000000000004')) returns 0.3", () => {
+    expect(limitLength('0.30000000000000004')).toEqual('0.3')
   });
 })

@@ -27,8 +27,8 @@ function inputHandler(input: string, display1: string, display2: string): string
 	if (digits.includes(input) && !/\)$/.test(display1)) {
 		return disp1Changed
 	}
-	if (nulls.includes(input) && !/\)$|[-×+/]0$|^0$/.test(display1)) {
-		if (/[-×+/]$|^$/.test(display1)) return [display1.concat('0'), display2]
+	if (nulls.includes(input) && !/\)$|[-×+/√]0$|^0$/.test(display1)) {
+		if (/[-×+/√]$|^$/.test(display1)) return [display1.concat('0'), display2]
 		return disp1Changed
 	}
 	if (operators.includes(input) && /[\d)]$/.test(display1)) {
@@ -46,6 +46,12 @@ function inputHandler(input: string, display1: string, display2: string): string
 	if (input === ')' && /[\d)]$/.test(display1) &&
 		(display1.match(/\(/g)?.length || 0) >
 		(display1.match(/\)/g)?.length || 0)) {
+		return disp1Changed
+	}
+	if (input === '√' && !/[√%,\d)]$/.test(display1)) {
+		return disp1Changed
+	}
+	if (input === '%' && /[\d)]$/.test(display1)) {
 		return disp1Changed
 	}
 

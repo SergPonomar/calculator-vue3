@@ -1,3 +1,27 @@
+function sqrt(arr: string[]): string[] {
+	for (let i=0; i < arr.length-1; i++) {
+		if (arr[i] === '√') {
+			const num = Number(arr[i+1])
+			const res: number = num < 0? 
+				-Math.sqrt(-num) : Math.sqrt(num)
+			arr.splice(i, 2, res.toString())
+			i=i-1	
+		}
+	}
+	return arr
+}
+
+function percentage(arr: string[]): string[] {
+	for (let i=1; i < arr.length-1; i++) {
+		if (arr[i] === '%') {
+			const res: number = Number(arr[i-1]) / 100 * Number(arr[i+1])
+			arr.splice(i-1, 3, res.toString())
+			i=i-2
+		}
+	}
+	return arr
+}
+
 function multiDivide(arr: string[]): string[] {
 	for (let i=1; i < arr.length-1; i++) {
 		if (arr[i] === '×' || arr[i] === '/') {
@@ -26,15 +50,17 @@ function calcInside(arr: string[]): string {
 	if (arr.length === 1) {
 		return Number(arr[0]).toString()
   }
+  sqrt(arr)
+  percentage(arr)
   multiDivide(arr)
   sumSubtract(arr)
 	return arr[0]
 }
 
 function strToArray(str: string): RegExpMatchArray | string[] {
-	return str.replace(/((?<=[×+/])|\B)-(?=\()/g, '-1×')
+	return str.replace(/((?<=[×+/])|\B)-(?=[(√])/g, '-1×')
 						.replace(/,/g, '.')
-						.match(/(?<!e)[×+/()]|(?<=[^×+/(])-|(-?(\d*\.\d+|\d+)(e[+-]\d+)?)/g) || [str]
+						.match(/(?<!e)[×+/()%√]|(?<=[^×+/(%√])-|(-?(\d*\.\d+|\d+)(e[+-]\d+)?)/g) || [str]
 }
 
 function checkParentheses(str: string): boolean {
@@ -43,7 +69,7 @@ function checkParentheses(str: string): boolean {
 }
 
 function limitLength(str: string): string {
-	return str.length >= 14? Number(str).toPrecision(5): str
+	return str.length >= 14? Number(str).toPrecision(5).replace(/0+$/, ''): str
 }
 
 function calcResult(str: string): string {
@@ -66,4 +92,12 @@ function calcResult(str: string): string {
 	return limitLength(calcInside(argArray)).replace(/\./g, ',')
 }
 
-export {calcInside, calcResult, checkParentheses, multiDivide, strToArray, sumSubtract}
+export {calcInside,
+	calcResult,
+	checkParentheses,
+	limitLength,
+	multiDivide,
+	percentage,
+	strToArray,
+	sqrt,
+	sumSubtract}
