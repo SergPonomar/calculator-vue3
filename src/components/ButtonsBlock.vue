@@ -23,6 +23,8 @@ function clickHandler(e: Event): void {
     v-for="control in controls"
     :key="control"
     class="button"
+    role="button"
+    :name="control"
     @click="clickHandler" 
   >{{ control }}</a>
 </template>

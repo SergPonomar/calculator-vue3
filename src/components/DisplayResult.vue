@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import {inject} from 'vue'
+import {inject, ref} from 'vue'
 import {dispResKey} from '../utils/provide-keys'
 
-const disp = inject(dispResKey)
+const disp = inject(dispResKey, ref<string>("0"))
 </script>
 
 <template>
-  <div class="display-res">
+  <div 
+    aria-label="result"
+    class="display-res"
+  >
     <span>{{ disp }}</span>
   </div>
 </template>

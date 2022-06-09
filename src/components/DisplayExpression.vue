@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import {inject} from 'vue'
+import {inject, ref} from 'vue'
 import {dispExpKey} from '../utils/provide-keys'
 
-const disp = inject(dispExpKey)
+const disp = inject(dispExpKey, ref<string>(""))
 </script>
 
 <template>
-  <div class="display-exp">
+  <div
+    aria-label="expression"
+    class="display-exp"
+  >
     <span>{{ disp }}</span>
   </div>
 </template>

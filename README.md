@@ -21,6 +21,7 @@ npm run dev
 
 ```sh
 npm run test
+npm run test:e2e
 ```
 
 Запуск статического анализа:

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import {inject} from 'vue'
+import {inject, ref} from 'vue'
 import {isMobileKey} from '../utils/provide-keys'
 
-const isMobile = inject(isMobileKey)
+const isMobile = inject(isMobileKey, ref<boolean>(false))
 </script>
 
 <template>
   <div
     class="separator"
+    role="separator"
     :class="{'separator-mobile': isMobile}"
   />
 </template>

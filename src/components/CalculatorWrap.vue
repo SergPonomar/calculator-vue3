@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {inject} from 'vue'
+import {inject, ref} from 'vue'
 import {isMobileKey, mobHeightKey} from '../utils/provide-keys'
 
-const isMobile = inject(isMobileKey)
-const mobHeight = inject(mobHeightKey)
+const isMobile = inject(isMobileKey, ref<boolean>(false))
+const mobHeight = inject(mobHeightKey, ref<boolean>(window.innerHeight + 'px'))
 </script>
 
 <template>
@@ -12,7 +12,8 @@ const mobHeight = inject(mobHeightKey)
     :class="{'back-mobile': isMobile}"
   >
     <div 
-      class="calculator" 
+      class="calculator"
+      data-testid="calculator"
       :class="{'calculator-mobile': isMobile}"
     >
       <div :class="{'displays-mobile': isMobile}">
