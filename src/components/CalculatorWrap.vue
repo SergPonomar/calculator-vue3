@@ -3,7 +3,7 @@ import {inject, ref} from 'vue'
 import {isMobileKey, mobHeightKey} from '../utils/provide-keys'
 
 const isMobile = inject(isMobileKey, ref<boolean>(false))
-const mobHeight = inject(mobHeightKey, ref<boolean>(window.innerHeight + 'px'))
+const mobHeight = inject(mobHeightKey, ref<string>(window.innerHeight + 'px'))
 </script>
 
 <template>
